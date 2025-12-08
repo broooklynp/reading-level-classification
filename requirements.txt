@@ -1,0 +1,9 @@
+transformers
+datasets
+evaluate
+accelerate
+numpy
+pandas
+torch
+matplotlib
+typing_extensions
