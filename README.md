@@ -1,6 +1,23 @@
 # Reading Level Text Classification
 This project explores whether a modern language model can classify short fiction passages into three educational reading levels: Elementary, Middle, and High School.
 
+## Repo Structure
+```
+
+reading-level-classification
+├── data/
+│   ├── fiction.csv         # dataset of fiction passages
+│   ├── id_df.csv           # in-domain results from final model
+│   ├── nonfiction.csv      # dataset of nonfiction passages
+│   └── ood_df.csv          # out-of-domain results from final model
+├── .gitignore
+├── README.md
+├── analysis.ipynb          # contains analysis/visualizations of final model results
+├── notebook.ipynb          # contains code for model training and testing
+└── requirements.txt
+
+```
+
 ## Research Question
 How effectively can a language model (e.g., DistilBERT) classify fictional text passages by educational reading level?
 
