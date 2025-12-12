@@ -22,12 +22,12 @@ reading-level-classification
 How effectively can a language model (e.g., DistilBERT) classify fictional text passages by educational reading level?
 
 ## Motivation
-Traditional readability formulas (i.e., Flesch-Kincaid, SMOG) rely on surface-level features, like word and sentence length. However, these metrics don't capture deeper aspects such as:
+Traditional readability formulas (i.e., Flesch-Kincaid, SMOG) rely on surface-level features like word and sentence length. However, these metrics don't capture deeper aspects of writing such as:
 - vocabulary difficulty
 - sentence structure and syntax
 - abstract vs. concrete ideas
 
-Transformer models use contextual embeddings and may detect these subtler patterns more effectively.
+Transformer models use contextual embeddings and may detect these deeper, subtler patterns more effectively.
 
 ## Dataset
 Because no suitable public dataset exists, we built our own:
@@ -48,16 +48,17 @@ Because no suitable public dataset exists, we built our own:
 We compared several pretrained transformer models:
 - RoBERTa-large
 - DistilBERT
-- XLNet
-- ERNIE
+- XLNet-case
+- ERNIE 2.0
 
-We chose DistilBERT for final training because it provided the best balance of loss, accuracy, and training speed, without overfitting to the training set.
+We chose **DistilBERT** for final training because it provided the best balance of loss, accuracy, and training speed, without overfitting to the training set.
 
 ## Classification Approach
 1. Fine-tune each model on the labeled fiction dataset
 2. Predict: Elementary (0), Middle (1), or High (2) School
-3. Evaluate generalization on nonfiction passages
-4. Error analysis to understand misclassifications
+3. Test model on held-out fiction test set
+4. Evaluate generalization on nonfiction passages
+5. Error analysis to understand misclassifications
 
 ## Evaluation
 We report:
@@ -72,19 +73,23 @@ We report:
 After training on fictional text, the DistilBERT model was tested on nonfiction passages to explore robustness and genre transfer.
 
 ## Reproducing the Model
-All code for data processing, model training, evaluation, and prediction is contained in a single Jupyter notebook. To reproduce the results:
+All code for data processing, model preparation, model training, and evaluation is contained in two Jupyter notebooks. To reproduce the results:
 1. Clone the repository
 ```
 git clone https://github.com/broooklynp/reading-level-classification.git
 ```
-2. Open the Notebook
+2. Open the Notebooks
 
 ``
-reading_level_classification.ipynb
+notebook.ipynb
+``
+and
+``
+analysis.ipynb
 ``
 
 4. Run All Cells
-The notebook will:
+The notebooks will:
 - Load and preprocess both datasets
 - Fine-tune each tested model (DistilBERT, RoBERTa, ERNIE, XLNet)
 - Generate evaluation metrics
